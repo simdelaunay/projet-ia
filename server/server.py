@@ -1,17 +1,20 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
-
-# Import your existing AI pipeline
-from langgraph.graph import StateGraph
-from langchain_core.documents import Document
-
-# Your existing AI graph
-from model import graph  # Replace with the correct import
+from model import graph  # Assurez-vous que ceci est correct
 
 app = FastAPI()
 
-# Request body model
+# Configurer CORS pour accepter les requêtes du frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Autoriser le frontend React
+    allow_credentials=True,
+    allow_methods=["*"],  # Autoriser toutes les méthodes (GET, POST, etc.)
+    allow_headers=["*"],  # Autoriser tous les headers
+)
+
 class QuestionRequest(BaseModel):
     question: str
 
