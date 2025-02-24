@@ -16,7 +16,7 @@ from langgraph.graph import START, StateGraph
 from typing_extensions import List, TypedDict
 
 if not os.environ.get("OPENAI_API_KEY"):
-  os.environ["OPENAI_API_KEY"] = "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"
+  os.environ["OPENAI_API_KEY"] = "[YOUR_OPENAI_API_KEY]"
 
 llm = init_chat_model("gpt-4o-mini", model_provider="openai")
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
